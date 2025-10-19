@@ -5,6 +5,7 @@ import DevWCastle.api_spring.Client.Repository.ClientRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,6 +55,11 @@ public class ClientService {
 
         });
 
+    }
+
+    public ResponseEntity<Void> deleteClient(Long id){
+        this.clientRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
