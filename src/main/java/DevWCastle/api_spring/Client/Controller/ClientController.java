@@ -3,6 +3,7 @@ package DevWCastle.api_spring.Client.Controller;
 import DevWCastle.api_spring.Client.Model.ClientModel;
 import DevWCastle.api_spring.Client.Service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +33,12 @@ public class ClientController {
     @PutMapping(value="/atualizar/{id}")
     public Optional<ClientModel> update(@RequestBody ClientModel clientModel, @PathVariable Long id){
         return this.clientService.updateClient(clientModel, id);
+    }
+
+    @DeleteMapping(value = "/deletar/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+       this.clientService.deleteClient(id);
+       return ResponseEntity.noContent().build();
     }
 
 
